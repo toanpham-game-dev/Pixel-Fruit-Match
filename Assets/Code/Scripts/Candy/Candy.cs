@@ -1,7 +1,10 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Candy : MonoBehaviour
 {
+    private const float k_swapDuration = 0.2f;
+
     [SerializeField] private CandyType m_type;
 
     private Cell m_cell;
@@ -22,6 +25,13 @@ public class Candy : MonoBehaviour
             m_cell.CurrentCandy = null;
             m_cell = null;
         }
+    }
+
+    public Tween MoveTo(Vector3 targetPosition)
+    {
+        return transform.DOMove(
+            targetPosition,
+            k_swapDuration);
     }
 
     // Draw the bound cell coordinates in the Scene view for debugging.
