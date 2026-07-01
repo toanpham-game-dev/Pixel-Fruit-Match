@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -49,13 +50,65 @@ public class BoardManager : MonoBehaviour
     private void SpawnCandy(int x, int y)
     {
         int index = Random.Range(0, AvailableCandies.Length);
-        Candy prefab = AvailableCandies[index];
+        Candy prefab = GetRandomValidCandy(x, y);
 
         Vector3 worldPosition = GetWorldPosition(x, y);
 
         Candy candy = Instantiate(prefab, worldPosition, Quaternion.identity, transform);
 
         candy.Bind(m_cells[x, y]);
+    }
+
+    private Candy GetRandomValidCandy(int x, int y)
+    {
+        List<Candy> candidates = new();
+
+        foreach (Candy prefab in AvailableCandies)
+        {
+            if (!CreatesMatch(x, y, prefab))
+            {
+                candidates.Add(prefab);
+            }
+        }
+
+        int index = Random.Range(0, candidates.Count);
+
+        return candidates[index];
+    }
+
+    private bool CreatesMatch(int x, int y, Candy prefab)
+    {
+        // Check horizontal
+        if (x >= 2)
+        {
+            Candy left1 = m_cells[x - 1, y].CurrentCandy;
+            Candy left2 = m_cells[x - 2, y].CurrentCandy;
+
+            if (left1 != null &&
+                left2 != null &&
+                left1.Type == prefab.Type &&
+                left2.Type == prefab.Type)
+            {
+                return true;
+            }
+        }
+
+        // Check vertical
+        if (y >= 2)
+        {
+            Candy down1 = m_cells[x, y - 1].CurrentCandy;
+            Candy down2 = m_cells[x, y - 2].CurrentCandy;
+
+            if (down1 != null &&
+                down2 != null &&
+                down1.Type == prefab.Type &&
+                down2.Type == prefab.Type)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private Vector3 GetWorldPosition(int x, int y)
