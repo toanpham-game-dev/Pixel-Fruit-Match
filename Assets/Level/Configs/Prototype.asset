@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84083aa6974321c429e14139e9533c44, type: 3}
+  m_Name: Prototype
+  m_EditorClassIdentifier: Assembly-CSharp::BoardConfig
+  Width: 8
+  Height: 8
+  CandyPrefabs:
+  - {fileID: 3020359180436146121, guid: f74d7978491fe2c4d92b8388e0583f6f, type: 3}
+  - {fileID: 2585594552533519259, guid: 7c3136b6d360627438499d0e58dfa4da, type: 3}
+  - {fileID: 2113638292100161748, guid: f3d73f68f9cce2445b0e943bacfa2071, type: 3}
+  - {fileID: 1103811805678138099, guid: 1bcb4eb4136edd74f83fc6f76f9d6baa, type: 3}
+  - {fileID: 1570737856048076832, guid: e58966636ec5e8f43b1ce2efe6dd1df8, type: 3}
